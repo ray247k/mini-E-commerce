@@ -20,6 +20,7 @@
         <select type="text" class="form-control" v-model="model.manufacturer" name="manufacturer">
           <template v-for="manufacturer in manufacturers">
             <option
+              :key="manufacturer._id"
               :value="manufacturer._id"
               :selected="manufacturer._id == (model.manufacturer && model.manufacturer._id)"
             >{{manufacturer.name}}</option>
