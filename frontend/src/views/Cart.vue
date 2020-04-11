@@ -8,7 +8,7 @@
         <p class="product__name">產品名稱：{{product.name}}</p>
         <p class="product__description">簡介：{{product.description}}</p>
         <p class="product__price">價錢：{{product.price}}</p>
-        <p class="product.manufacturer">生產商：{{product.manufacturer}}</p>
+        <p class="product.manufacturer">生產商：{{product.manufacturer.name}}</p>
         <img :src="product.image" alt class="product__image" />
         <button @click="removeFromCart(product._id)">從購物車中移除</button>
       </div>

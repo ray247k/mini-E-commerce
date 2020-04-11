@@ -7,7 +7,7 @@
           <p class="product__name">產品名稱：{{product.name}}</p>
           <p class="product__description">簡介：{{product.description}}</p>
           <p class="product__price">價錢：{{product.price}}</p>
-          <p class="product.manufacturer">生產商：{{product.manufacturer}}</p>
+          <p class="product.manufacturer">生產商：{{product.manufacturer.name}}</p>
           <img :src="product.image" alt class="product__image" />
           <button @click="addToCart(product)">加入購物車</button>
         </div>
@@ -30,6 +30,11 @@
 <script>
 export default {
   name: "product-list",
+  created() {
+    if (this.products.length === 0) {
+      this.$store.dispatch("allProducts");
+    }
+  },
   computed: {
     // a computed getter
     products() {
