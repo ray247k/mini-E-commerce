@@ -3,14 +3,7 @@
     <div class="products">
       <div class="container">This is ProductList</div>
       <template v-for="product in products">
-        <div :key="product._id" class="product">
-          <p class="product__name">產品名稱：{{product.name}}</p>
-          <p class="product__description">簡介：{{product.description}}</p>
-          <p class="product__price">價錢：{{product.price}}</p>
-          <p class="product.manufacturer">生產商：{{product.manufacturer.name}}</p>
-          <img :src="product.image" alt class="product__image" />
-          <button @click="addToCart(product)">加入購物車</button>
-        </div>
+        <product-item :product="product" :key="product._id"></product-item>
       </template>
     </div>
   </div>
@@ -28,6 +21,7 @@
 </style>
 
 <script>
+import ProductItem from './ProductItem.vue';
 export default {
   name: "product-list",
   created() {
@@ -41,12 +35,8 @@ export default {
       return this.$store.state.products;
     }
   },
-  methods: {
-    addToCart(product) {
-      this.$store.commit("ADD_TO_CART", {
-        product
-      });
-    }
-  }
+  components: {
+    'product-item': ProductItem
+  },
 };
 </script>
