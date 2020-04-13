@@ -1,15 +1,28 @@
 <template>
   <div>
     <div class="product">
-      <p class="product__name">商品名稱：{{product.name}}</p>
-      <p class="product__description">簡介：{{product.description}}</p>
-      <p class="product__price">售價：{{product.price}}</p>
-      <p class="product.manufacturer">生產商：{{product.manufacturer.name}}</p>
-      <img :src="product.image" alt class="product__image" />
+      <router-link :to="'/detail/' + product._id" class="product-link">
+        <p class="product__name">商品名稱：{{product.name}}</p>
+        <p class="product__description">簡介：{{product.description}}</p>
+        <p class="product__price">售價：{{product.price}}</p>
+        <p class="product.manufacturer">生產商：{{product.manufacturer.name}}</p>
+        <img :src="product.image" alt class="product__image" />
+      </router-link>
       <product-button :product="product"></product-button>
     </div>
   </div>
 </template>
+
+<style>
+.product {
+  border-bottom: 1px solid black;
+}
+
+.product__image {
+  width: 100px;
+  height: 100px;
+}
+</style>
 
 <script>
 import ProductButton from "./ProductButton";

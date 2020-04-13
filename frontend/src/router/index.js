@@ -3,6 +3,7 @@ import Router from 'vue-router'
 
 import Home from '@/views/Home.vue'
 import Cart from '@/views/Cart'
+import Detail from '@/views/Detail';
 
 // Admin Components
 import Index from '@/views/admin/Index'
@@ -44,6 +45,11 @@ const routes = [
     path: '/cart',
     name: 'Cart',
     component: Cart,
+  },
+  {
+    path: '/detail/:id',
+    name: 'Detail',
+    component: Detail,
   },
 ]
 

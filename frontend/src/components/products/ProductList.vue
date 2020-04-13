@@ -21,7 +21,7 @@
 </style>
 
 <script>
-import ProductItem from './ProductItem.vue';
+import ProductItem from "./ProductItem.vue";
 export default {
   name: "product-list",
   created() {
@@ -32,11 +32,11 @@ export default {
   computed: {
     // a computed getter
     products() {
-      return this.$store.state.products;
+      return this.$store.getters.allProducts;
     }
   },
   components: {
-    'product-item': ProductItem
-  },
+    "product-item": ProductItem
+  }
 };
 </script>
