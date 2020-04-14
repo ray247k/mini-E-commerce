@@ -10,6 +10,7 @@ import Index from '@/views/admin/Index'
 import New from '@/views/admin/New'
 import Products from '@/views/admin/Products'
 import Edit from '@/views/admin/Edit'
+import Manufacturers from '@/views/admin/Manufacturers'
 
 Vue.use(Router)
 
@@ -38,6 +39,11 @@ const routes = [
         path: 'edit/:id',
         name: 'Edit',
         component: Edit,
+      },
+      {
+        path: 'manufacturers',
+        name: 'Manufacturers',
+        component: Manufacturers,
       },
     ]
   },
