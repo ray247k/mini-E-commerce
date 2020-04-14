@@ -13,6 +13,9 @@
             <li>
               <router-link to="/admin/manufacturers">查看製造商</router-link>
             </li>
+            <li>
+              <router-link to="/admin/manufacturers/new">新增製造商</router-link>
+            </li>
           </ul>
         </div>
         <router-view></router-view>

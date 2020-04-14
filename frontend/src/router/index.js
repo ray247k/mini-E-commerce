@@ -11,6 +11,8 @@ import New from '@/views/admin/New'
 import Products from '@/views/admin/Products'
 import Edit from '@/views/admin/Edit'
 import Manufacturers from '@/views/admin/Manufacturers'
+import NewManufacturers from '@/views/admin/NewManufacturers';
+import EditManufacturers from '@/views/admin/EditManufacturers';
 
 Vue.use(Router)
 
@@ -44,6 +46,16 @@ const routes = [
         path: 'manufacturers',
         name: 'Manufacturers',
         component: Manufacturers,
+      },
+      {
+        path: 'manufacturers/new',
+        name: 'NewManufacturers',
+        component: NewManufacturers,
+      },
+      {
+        path: 'manufacturers/edit/:id',
+        name: 'EditManufacturers',
+        component: EditManufacturers,
       },
     ]
   },
