@@ -5,10 +5,10 @@
 <script>
 import ManufacturerForm from "@/components/ManufacturerForm.vue";
 export default {
-  computed: {
-    model() {
-      return {};
-    }
+  data() {
+    return {
+      model: {}
+    };
   },
   methods: {
     addManufacturer(model) {
