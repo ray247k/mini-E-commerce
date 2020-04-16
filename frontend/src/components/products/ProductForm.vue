@@ -1,14 +1,14 @@
 <template>
   <div class="productInfo">
-    <el-form class="form" ref="form" :model="model" label-width="180px">
+    <el-form class="form" ref="form" label-width="180px">
       <el-form-item label="Name">
-        <el-input v-model="model.name"></el-input>
+        <el-input v-model="modelData.name"></el-input>
       </el-form-item>
       <el-form-item label="Price">
-        <el-input v-model="model.price"></el-input>
+        <el-input v-model="modelData.price"></el-input>
       </el-form-item>
       <el-form-item label="Manufacturer ">
-        <el-select v-model="model.manufacturer.name" clearable placeholder="請選擇製造商">
+        <el-select v-model="modelData.manufacturer.name" clearable placeholder="請選擇製造商">
           <el-option
             v-for="manufacturer in manufacturers"
             :key="manufacturer._id"
@@ -18,10 +18,10 @@
         </el-select>
       </el-form-item>
       <el-form-item label="Image ">
-        <el-input v-model="model.image"></el-input>
+        <el-input v-model="modelData.image"></el-input>
       </el-form-item>
       <el-form-item label="Description ">
-        <el-input type="textarea" v-model="model.description"></el-input>
+        <el-input type="textarea" v-model="modelData.description"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button v-if="isEditing" type="primary" @click="onSubmit">Update Product</el-button>
@@ -35,13 +35,26 @@
 export default {
   data() {
     return {
-      input: ""
+      modelData: { manufacturer: { name: "" } }
     };
   },
   props: ["model", "manufacturers", "isEditing"],
+  created() {
+    const product = this.model;
+    this.modelData = { ...product, manufacturer: { ...product.manufacturer } };
+  },
+  watch: {
+    model(val) {
+      this.modelData = val;
+    }
+  },
   methods: {
-    saveProduct() {
-      this.$emit("save-product", this.model);
+    onSubmit() {
+      const manufacturer = this.manufacturers.find(
+        item => item.name === this.modelData.manufacturer.name
+      );
+      this.modelData.manufacturer = manufacturer;
+      this.$emit("save-product", this.modelData);
     }
   }
 };
