@@ -1,15 +1,21 @@
 <template>
-  <div>
-    <div class="product">
-      <router-link :to="'/detail/' + product._id" class="product-link">
-        <p class="product__name">商品名稱：{{product.name}}</p>
-        <p class="product__description">簡介：{{product.description}}</p>
-        <p class="product__price">售價：{{product.price}}</p>
-        <p class="product.manufacturer">生產商：{{product.manufacturer.name}}</p>
-        <img :src="product.image" alt class="product__image" />
-      </router-link>
-      <product-button :product="product"></product-button>
-    </div>
+  <div class="products">
+    <el-table class="table" :data="products" max-height="250">
+      <el-table-column prop="name" label="產品名稱" width="180"></el-table-column>
+      <el-table-column prop="description" label="介紹" width="180"></el-table-column>
+      <el-table-column prop="price" label="售價" width="180"></el-table-column>
+      <el-table-column prop="manufacturer.name" label="製造商" width="180"></el-table-column>
+      <!-- <el-table-column
+        label="圖片""
+        width="200">
+        <img :src="image" alt="" class="product__image">
+      </el-table-column>-->
+      <el-table-column label="操作" width="180">
+        <template slot-scope="scope">
+          <product-button :id="scope.row._id"></product-button>
+        </template>
+      </el-table-column>
+    </el-table>
   </div>
 </template>
 
@@ -28,7 +34,7 @@
 import ProductButton from "./ProductButton";
 export default {
   name: "product-item",
-  props: ["product"],
+  props: ["products"],
   components: {
     "product-button": ProductButton
   }

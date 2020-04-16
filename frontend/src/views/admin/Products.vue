@@ -1,29 +1,23 @@
 <template>
-  <div>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>名稱</th>
-          <th>價錢</th>
-          <th>製造商</th>
-          <th></th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="product in products" :key="product._id">
-          <td>{{product.name}}</td>
-          <td>{{product.price}}</td>
-          <td>{{product.manufacturer.name}}</td>
-          <td class="modify">
-            <router-link :to="'/admin/edit/' + product._id">修改</router-link>
-          </td>
-          <td class="remove">
-            <a @click="removeProduct(product._id)" href="#">刪除</a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="products">
+    <el-table class="table" :data="products">
+      <el-table-column prop="name" label="商品" width="180"></el-table-column>
+      <el-table-column prop="price" label="售價" width="180"></el-table-column>
+      <el-table-column prop="manufacturer.name" label="製造商" width="180"></el-table-column>
+      <el-table-column label="管理" width="200">
+        <template slot-scope="scope">
+          <el-button class="modify" type="text" size="small">
+            <router-link :to="'/admin/edit/' + scope.row._id">修改</router-link>
+          </el-button>
+          <el-button
+            class="remove"
+            @click="removeProduct(scope.row._id), deleteRow(scope.$index, products)"
+            type="text"
+            size="small"
+          >刪除</el-button>
+        </template>
+      </el-table-column>
+    </el-table>
   </div>
 </template>
 
