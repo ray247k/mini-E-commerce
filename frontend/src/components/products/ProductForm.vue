@@ -1,6 +1,14 @@
 <template>
   <div class="productInfo">
-    <el-form class="form" ref="form" label-width="180px">
+    <el-form
+      class="form"
+      ref="form"
+      label-width="180px"
+      v-loading="loading"
+      element-loading-text="Loading..."
+      element-loading-spinner="el-icon-loading"
+      element-loading-background="rgba(0, 0, 0, 0.8)"
+    >
       <el-form-item label="Name">
         <el-input v-model="modelData.name"></el-input>
       </el-form-item>
@@ -24,7 +32,12 @@
         <el-input type="textarea" v-model="modelData.description"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button v-if="isEditing" type="primary" @click="onSubmit">Update Product</el-button>
+        <el-button
+          v-if="isEditing"
+          type="primary"
+          native-type="submit"
+          @click="onSubmit"
+        >Update Product</el-button>
         <el-button v-else @click="onSubmit">Add Product</el-button>
       </el-form-item>
     </el-form>
@@ -48,8 +61,14 @@ export default {
       this.modelData = val;
     }
   },
+  computed: {
+    loading() {
+      return this.$store.state.showLoader;
+    }
+  },
   methods: {
     onSubmit() {
+      // 表單中只有 modelData.manufacturer.name，但後端需要整個製造商物件，所以要找出對應的製造商物件寫入到 modelData 中
       const manufacturer = this.manufacturers.find(
         item => item.name === this.modelData.manufacturer.name
       );
