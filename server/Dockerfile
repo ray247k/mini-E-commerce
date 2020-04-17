@@ -1,15 +1,15 @@
-FROM node:10
+FROM node:12
 
 # 指定工作目錄為 /usr/src/app，接下来的指令全部在這個路徑下操作
 WORKDIR /usr/src/app
 
 # 將 package.json 複製到根目錄
-COPY package.json .
+COPY package*.json ./
 
 # 安裝 npm 依賴
-RUN npm config set registry https://registry.npm.taobao.org && npm install
+RUN npm install
 
-# 複製全部程式內容
+# 複製全部程式內容到容器內
 COPY . .
 
 # 設定環境變數
@@ -24,4 +24,4 @@ ENV PORT=3000
 EXPOSE 3000
 
 # 設定映像檔內執行的指令
-CMD [ "node", "./bin/www" ]
+CMD ["npm", "start"]
